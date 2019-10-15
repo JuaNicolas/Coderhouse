@@ -30,7 +30,8 @@
  * 
  */
 
-import {validName, validEmail, validComment} from '../utils/contact/validFields'
+import { validName, validEmail, validComment } from '../utils/contact/validFields'
+import postData from '../utils/contact/postData'
 
 // Funciones
 
@@ -59,5 +60,28 @@ export default function contactController() {
 
     }).keyup(function () {
         validComment($(this))
+    })
+
+
+    // Send email
+    let submitButtonNode = $('#buttonSend')
+
+    submitButtonNode.click(function () {
+        var firstName = $('#inputName').val()
+        var email = $('#inputEmail').val()
+        var comments = $('#inputComment').val()
+
+        var data = {
+            firstName,
+            email,
+            comments
+        }
+
+
+        postData('./simpleEmail.php', data, function (error, data) {
+            if (!error) {
+                window.location.hash = '#/contact/greetings'
+            }
+        })
     })
 }
