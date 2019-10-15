@@ -7,9 +7,7 @@ import searchCharacter from '../localStorage/searchChar';
 export default function showChars(_data) {
 
     let tableBody = $('#tableBody')
-
     let charList = _data.results
-
 
     if (charList) {
 
@@ -22,7 +20,6 @@ export default function showChars(_data) {
 
             // Grab ID from the specific unique URL
             let id = parseInt(char.url.slice(28, -1))
-
 
             let searchChar = searchCharacter(id)
             console.log(searchChar)
